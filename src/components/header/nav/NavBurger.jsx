@@ -17,14 +17,13 @@ import {
   User,
   Inscription,
   Logout,
-  Parametre,
 } from "@/components/logo/Logo";
 import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
-import styles from "@/components/header/nav/NavBurger.module.scss";
-import { signOut } from "next-auth/react";
+import styles from "./NavBurger.module.scss";
+// import { useSession, signOut } from "next-auth/react";
 
-export default function NavBurger({ handleBurger, burger, session }) {
+function NavBurger({ handleBurger, burger }) {
   const [accordion, setAccordion] = useState(false);
   const ref = useRef(null);
 
@@ -59,7 +58,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
       >
         <div
           ref={ref}
-          className="fixed left-0 top-0 z-60 h-screen w-full bg-neutral-950 text-neutral-100 opacity-90"
+          className="z-60 fixed left-0 top-0 h-screen w-full bg-neutral-950 text-neutral-100 opacity-90"
         >
           <div className="text-bg-neutral-100 absolute top-1/4 flex h-screen w-full flex-col items-center sm:top-1/3">
             <div
@@ -73,9 +72,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
                 <h3 className="">Activités</h3>
               </span>
               <div
-                className={`flex size-6 justify-center self-center fill-neutral-100 transition duration-300 ${
-                  accordion ? "rotate-0" : "rotate-180"
-                }`}
+                className={`flex size-6 justify-center self-center fill-neutral-100 transition duration-300 ${accordion ? "rotate-0" : "rotate-180"}`}
               >
                 <AngleDown />
               </div>
@@ -178,7 +175,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
               className="min-w-48 pb-4 text-neutral-100"
               aria-label="Lien vers la page de présentation des avis clients"
             >
-              <span className="flex  items-center">
+              <span className="flex items-center">
                 <span className="mr-3 flex size-6 fill-neutral-100">
                   <AvisClients />
                 </span>
@@ -192,7 +189,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
               className="min-w-48 pb-4 text-neutral-100"
               aria-label="Lien vers la page de présentation de blogs"
             >
-              <span className="flex  items-center">
+              <span className="flex items-center">
                 <span className="mr-3 flex size-6 justify-center fill-neutral-100">
                   <Blog />
                 </span>
@@ -213,7 +210,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
                 <h3 className="">06 34 26 64 00</h3>
               </span>
             </Link>
-            {session?.user ? (
+            {/* {session?.user ? (
               <>
                 <Link
                   href="#"
@@ -221,7 +218,7 @@ export default function NavBurger({ handleBurger, burger, session }) {
                   className="min-w-48 pb-4 text-neutral-100"
                   aria-label="Lien vers la page de profil de l'utilisateur"
                 >
-                  <span className="flex size-6 w-full items-center ">
+                  <span className="flex size-6 w-full items-center">
                     {session?.user?.image ? (
                       <Image
                         src={session.user.image}
@@ -238,17 +235,6 @@ export default function NavBurger({ handleBurger, burger, session }) {
                     <h3>{session.user.name}</h3>
                   </span>
                 </Link>
-                {session?.user?.role === "admin" && (
-                  <Link
-                    href="/dashboard"
-                    className="flex min-w-48 items-center pb-4"
-                  >
-                    <span className="mr-3 flex size-6 justify-center fill-neutral-100">
-                      <Parametre />
-                    </span>
-                    <h3>Paramètres</h3>
-                  </Link>
-                )}
                 <div
                   onClick={() => signOut()}
                   className="min-w-48 pb-4 text-neutral-100"
@@ -290,10 +276,12 @@ export default function NavBurger({ handleBurger, burger, session }) {
                   </span>
                 </Link>
               </>
-            )}
+            )} */}
           </div>
         </div>
       </CSSTransition>
     </div>
   );
 }
+
+export default NavBurger;

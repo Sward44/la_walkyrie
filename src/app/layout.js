@@ -1,6 +1,9 @@
 import { connectMongoose } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
+// import { getServerSession } from "next-auth";
+// import { authOptions } from "@/app/api/auth/authOptions";
 import Header from "@/components/header/Header";
+// import AuthProvider from "@/utils/SessionProvider";
 
 export async function generateMetadata() {
   await connectMongoose();
@@ -66,12 +69,15 @@ export async function generateMetadata() {
   };
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // const session = await getServerSession(authOptions);
   return (
     <html lang="*fr-FR">
       <body>
+        {/* <AuthProvider> */}
         <Header />
         {children}
+        {/* </AuthProvider> */}
       </body>
     </html>
   );

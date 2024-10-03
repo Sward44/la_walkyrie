@@ -2,11 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -18,6 +14,23 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      zIndex: {
+        60: "60",
+        70: "70",
+        80: "80",
+        90: "90",
+        100: "100",
+        110: "110",
+        120: "120",
+        130: "130",
+        140: "140",
+        150: "150",
+        160: "160",
+        170: "170",
+        180: "180",
+        190: "190",
+        200: "200",
       },
     },
   },
