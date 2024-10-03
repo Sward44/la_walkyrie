@@ -1,0 +1,21 @@
+.enter {
+  @apply opacity-0 translate-y-4;
+}
+.enterActive {
+  @apply transition duration-300;
+}
+.enterActive,
+.enterDone {
+  @apply opacity-100 translate-y-0;
+}
+
+.exit {
+  @apply opacity-100 translate-y-0;
+}
+.exitActive {
+  @apply transition duration-300;
+}
+.exitActive,
+.exitDone {
+  @apply opacity-0 translate-y-4;
+}
