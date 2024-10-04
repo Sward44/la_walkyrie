@@ -1,4 +1,4 @@
-import { Chonburi, Dancing_Script, Mulish, Pacifico } from "next/font/google";
+import { Chonburi, Mulish, Pacifico, Dancing_Script } from "next/font/google";
 
 export const mulish = Mulish({
   subsets: ["latin"],
@@ -13,15 +13,18 @@ export const chonburi = Chonburi({
   variable: "--font-chonburi",
   style: ["normal"],
 });
-export const pacifco = Pacifico({
+
+export const pacifico = Pacifico({
   subsets: ["latin"],
-  weight: ["400"],
+  display: "swap",
   variable: "--font-pacifico",
+  weight: ["400"],
   style: ["normal"],
 });
+
 export const dancing = Dancing_Script({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-dancing",
-  style: ["normal", "italic"],
+  style: ["normal"],
 });

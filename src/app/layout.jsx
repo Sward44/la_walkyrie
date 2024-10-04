@@ -1,5 +1,8 @@
+"use server";
 import { connectMongoose } from "@/utils/mongodb";
 import { MetaModel } from "@/models";
+import "@/app/globals.scss";
+import { mulish, chonburi, pacifico, dancing } from "@/fonts/fonts";
 // import { getServerSession } from "next-auth";
 // import { authOptions } from "@/app/api/auth/authOptions";
 import Header from "@/components/header/Header";
@@ -72,11 +75,15 @@ export async function generateMetadata() {
 export default async function RootLayout({ children }) {
   // const session = await getServerSession(authOptions);
   return (
-    <html lang="*fr-FR">
+    <html lang="fr">
       <body>
         {/* <AuthProvider> */}
-        <Header />
-        {children}
+        <div
+          className={`${mulish.variable} ${chonburi.variable} ${pacifico.variable} ${dancing.variable}`}
+        >
+          <Header />
+          {children}
+        </div>
         {/* </AuthProvider> */}
       </body>
     </html>

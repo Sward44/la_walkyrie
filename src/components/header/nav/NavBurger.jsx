@@ -17,13 +17,13 @@ import {
   User,
   Inscription,
   Logout,
+  Parametre,
 } from "@/components/logo/Logo";
 import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
-import styles from "./NavBurger.module.scss";
-// import { useSession, signOut } from "next-auth/react";
+import styles from "@/components/header/nav/NavBurger.module.scss";
 
-function NavBurger({ handleBurger, burger }) {
+export default function NavBurger({ handleBurger, burger }) {
   const [accordion, setAccordion] = useState(false);
   const ref = useRef(null);
 
@@ -58,10 +58,10 @@ function NavBurger({ handleBurger, burger }) {
       >
         <div
           ref={ref}
-          className="z-60 fixed left-0 top-0 h-screen w-full bg-neutral-950 text-neutral-100 opacity-90"
+          className="fixed left-0 top-0 z-60 h-screen w-full bg-neutral-950 text-neutral-100 opacity-90"
         >
           <div className="text-bg-neutral-100 absolute top-1/4 flex h-screen w-full flex-col items-center sm:top-1/3">
-            <div
+            {/* <div
               className="flex min-w-48 items-center justify-between pb-4"
               onClick={() => setAccordion(!accordion)}
             >
@@ -72,7 +72,9 @@ function NavBurger({ handleBurger, burger }) {
                 <h3 className="">Activités</h3>
               </span>
               <div
-                className={`flex size-6 justify-center self-center fill-neutral-100 transition duration-300 ${accordion ? "rotate-0" : "rotate-180"}`}
+                className={`flex size-6 justify-center self-center fill-neutral-100 transition duration-300 ${
+                  accordion ? "rotate-0" : "rotate-180"
+                }`}
               >
                 <AngleDown />
               </div>
@@ -83,92 +85,7 @@ function NavBurger({ handleBurger, burger }) {
                   ? "max-h-56 overflow-auto transition-all duration-300"
                   : "max-h-0 overflow-hidden transition-all duration-300"
               }`}
-            >
-              <li>
-                <Link
-                  href="/couverture"
-                  onClick={() => setBurger(false)}
-                  aria-label="Lien vers la page de présentation de l'activité de couverture"
-                >
-                  <span className="flex pb-2">
-                    <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                      <Couverture />
-                    </span>
-                    <h3>Couverture</h3>
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/zinguerie"
-                  onClick={() => setBurger(false)}
-                  aria-label="Lien vers la page de présentation de l'activité de zinguerie"
-                >
-                  <span className="flex pb-2">
-                    <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                      <Zinguerie />
-                    </span>
-                    <h3>Zinguerie</h3>
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/nettoyage"
-                  onClick={() => setBurger(false)}
-                  aria-label="Lien vers la page de présentation de l'activité de nettoyage"
-                >
-                  <span className="flex pb-2">
-                    <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                      <Nettoyage />
-                    </span>
-                    <h3>Nettoyage</h3>
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/isolation"
-                  onClick={() => setBurger(false)}
-                  aria-label="Lien vers la page de présentation de l'activité d'isolation"
-                >
-                  <span className="flex pb-2">
-                    <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                      <Isolation />
-                    </span>
-                    <h3>Isolation</h3>
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/charpente"
-                  onClick={() => setBurger(false)}
-                  aria-label="Lien vers la page de présentation de l'activité de charpente"
-                >
-                  <span className="flex pb-2">
-                    <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                      <Charpente />
-                    </span>
-                    <h3>Charpente</h3>
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/travaux-divers"
-                  onClick={() => setBurger(false)}
-                  aria-label="Lien vers la page de présentation de l'activité des travaux-divers"
-                >
-                  <span className="flex pb-4">
-                    <span className="ml-4 mr-3 flex h-7 w-7 self-center fill-neutral-100">
-                      <Travaux />
-                    </span>
-                    <h3>Travaux-divers</h3>
-                  </span>
-                </Link>
-              </li>
-            </ul>
+            ></ul>
             <Link
               href="/avis-clients"
               onClick={() => setBurger(false)}
@@ -209,79 +126,10 @@ function NavBurger({ handleBurger, burger }) {
                 </span>
                 <h3 className="">06 34 26 64 00</h3>
               </span>
-            </Link>
-            {/* {session?.user ? (
-              <>
-                <Link
-                  href="#"
-                  onClick={() => setBurger(false)}
-                  className="min-w-48 pb-4 text-neutral-100"
-                  aria-label="Lien vers la page de profil de l'utilisateur"
-                >
-                  <span className="flex size-6 w-full items-center">
-                    {session?.user?.image ? (
-                      <Image
-                        src={session.user.image}
-                        alt={session?.user?.name}
-                        width={28}
-                        height={28}
-                        className="mr-2 rounded-full"
-                      />
-                    ) : (
-                      <span className="mr-2 fill-neutral-100">
-                        <User />
-                      </span>
-                    )}
-                    <h3>{session.user.name}</h3>
-                  </span>
-                </Link>
-                <div
-                  onClick={() => signOut()}
-                  className="min-w-48 pb-4 text-neutral-100"
-                >
-                  <span className="flex items-center">
-                    <span className="mr-3 flex size-6 justify-center fill-neutral-100">
-                      <Logout />
-                    </span>
-                    <h3 className="">Deconnexion</h3>
-                  </span>
-                </div>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/connexion"
-                  onClick={() => setBurger(false)}
-                  className="min-w-48 pb-4 text-neutral-100"
-                  aria-label="Lien vers la page de connexion des utilisateurs"
-                >
-                  <span className="flex items-center">
-                    <span className="mr-3 flex size-6 justify-center fill-neutral-100">
-                      <Login />
-                    </span>
-                    <h3 className="">Connexion</h3>
-                  </span>
-                </Link>
-                <Link
-                  href="/inscription"
-                  onClick={() => setBurger(false)}
-                  className="min-w-48 text-neutral-100"
-                  aria-label="Lien vers la page d'inscription des utilisateurs"
-                >
-                  <span className="flex items-center">
-                    <span className="mr-3 flex size-6 justify-center fill-neutral-100">
-                      <Inscription />
-                    </span>
-                    <h3 className="">Inscription</h3>
-                  </span>
-                </Link>
-              </>
-            )} */}
+            </Link>*/}
           </div>
         </div>
       </CSSTransition>
     </div>
   );
 }
-
-export default NavBurger;
